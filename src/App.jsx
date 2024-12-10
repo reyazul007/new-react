@@ -3,30 +3,39 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
-
+import Banner from './components/Banner'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
+
+  const handleDecrement=()=>{
+    setCount((count)=>count-1)
+  }
+  const handleIncrement=()=>{
+    setCount((count)=>count+1)
+  }
 
   return (
     <>
-   <Navbar />
-      <div className='container'>
+      <Navbar />
+      <Banner />
      
-   
-      <h1 className='heading'>good evening everyone</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div className='container'>
 
-        <p>
-          hello kartik group
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+        <h1 className='heading'>good evening everyone</h1>
+        <div className="card ">
+          <h4> count is: {count}</h4>
+          <button onClick={handleIncrement}>
+           increment
+          </button>
+          <button onClick={handleDecrement}>
+           Decrement
+          </button>
+
+
+        </div>
+
       </div>
     </>
   )
