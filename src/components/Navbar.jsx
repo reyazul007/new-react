@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">first-project</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +32,10 @@ const Navbar = () => {
                 <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
+        
+
+                <button className="btn btn-success" onClick={props.toggleMode} type="submit">{props.btnText}</button>
+           
           </div>
         </div>
       </nav>

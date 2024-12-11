@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
+import Alert from './components/Alert'
 
 function App() {
   const [count, setCount] = useState(1)
+  const [mode, setMode] = useState('light')
+  const [btnText, setBtnText] =useState('Enable light')
+  const [alert, setAlert] =useState(null)
 
   const handleDecrement=()=>{
     setCount((count)=>count-1)
@@ -14,10 +16,28 @@ function App() {
   const handleIncrement=()=>{
     setCount((count)=>count+1)
   }
+ const showAlert=(type, message)=>{
+ setAlert({
+  type: type,
+  message: message
+ })
+ }
+  const toggleMode=()=>{
+    if (mode=='light') {
+      setMode('dark')
+      setBtnText('Enable Light')
+      showAlert("success", "Dark mode has been enabled")
+    } else {
+      setMode('light')
+      setBtnText('Enable Dark')
+      showAlert("success", "light mode has been enabled")
+    }
+  }
 
   return (
     <>
-      <Navbar />
+      <Navbar mode={mode} btnText={btnText} toggleMode={toggleMode}  />
+      <Alert  alert={alert} showAlert={showAlert}/>
       <Banner />
      
       <div className='container'>
