@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import  {useState}  from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
@@ -21,6 +21,9 @@ function App() {
   type: type,
   message: message
  })
+ setTimeout(() => {
+  setAlert(null)
+ }, 2000);
  }
   const toggleMode=()=>{
     if (mode=='light') {
@@ -30,7 +33,7 @@ function App() {
     } else {
       setMode('light')
       setBtnText('Enable Dark')
-      showAlert("success", "light mode has been enabled")
+      showAlert("danger", "light mode has been enabled")
     }
   }
 
