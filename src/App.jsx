@@ -3,6 +3,11 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
 import Alert from './components/Alert'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Home from './components/Home'
+import About from './components/About'
+import Login from './components/Login'
+import Signup from './components/Signup'
 
 function App() {
   const [count, setCount] = useState(1)
@@ -39,9 +44,16 @@ function App() {
 
   return (
     <>
+    <Router>
       <Navbar mode={mode} btnText={btnText} toggleMode={toggleMode}  />
       <Alert  alert={alert} showAlert={showAlert}/>
       <Banner />
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/about' element={<About />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<Signup />}/>
+      </Routes>
      
       <div className='container'>
 
@@ -60,6 +72,7 @@ function App() {
         </div>
 
       </div>
+      </Router>
     </>
   )
 }
