@@ -1,7 +1,6 @@
 import  {useState}  from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
-import Banner from './components/Banner'
 import Alert from './components/Alert'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './components/Home'
@@ -47,7 +46,7 @@ function App() {
     <Router>
       <Navbar mode={mode} btnText={btnText} toggleMode={toggleMode}  />
       <Alert  alert={alert} showAlert={showAlert}/>
-      <Banner />
+      
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/about' element={<About />}/>
