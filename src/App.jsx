@@ -7,6 +7,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import Profile from './components/Profile'
 
 function App() {
   const [count, setCount] = useState(1)
@@ -14,12 +15,12 @@ function App() {
   const [btnText, setBtnText] =useState('Enable light')
   const [alert, setAlert] =useState(null)
 
-  const handleDecrement=()=>{
-    setCount((count)=>count-1)
-  }
-  const handleIncrement=()=>{
-    setCount((count)=>count+1)
-  }
+  // const handleDecrement=()=>{
+  //   setCount((count)=>count-1)
+  // }
+  // const handleIncrement=()=>{
+  //   setCount((count)=>count+1)
+  // }
  const showAlert=(type, message)=>{
  setAlert({
   type: type,
@@ -52,9 +53,10 @@ function App() {
         <Route path='/about' element={<About />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
+        <Route path='/profile' element={<Profile />}/>
       </Routes>
      
-      <div className='container'>
+      {/* <div className='container'>
 
 
         <h1 className='heading'>good evening everyone</h1>
@@ -70,7 +72,7 @@ function App() {
 
         </div>
 
-      </div>
+      </div> */}
       </Router>
     </>
   )
