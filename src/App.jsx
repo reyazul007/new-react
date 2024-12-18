@@ -8,6 +8,8 @@ import About from './components/About'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Profile from './components/Profile'
+import Userlist from './components/Userlist'
+import User from './components/User'
 
 function App() {
   const [count, setCount] = useState(1)
@@ -54,6 +56,8 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/user/:userId/:userName' element={<User/>}/>
+        <Route path='/user' element={<Userlist />}/>
       </Routes>
      
       {/* <div className='container'>
