@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
+import productContext from '../context/porductContext'
+
 
 const Profile = () => {
-    const [count, setCount]= useState(1)
+  const context = useContext(productContext)
+  const { product } = context
+  console.log("this is my product", product);
+
+  // useEffect(() => {
+  //   update()
+  // }, [])
 
 
-    useEffect(()=>{
-     setCount(count + 1)
-     console.log("hello form useffect");
-     
-    },[])
-    console.log("this is buttom log");
-    
+
   return (
-    <div>
-      <h5>hello world!</h5>
-      <p>count : {count}</p>
+    <div className='container mt-4'>
+      <h5>This is my product</h5>
+      {/* <p>name of my product is {product.name} and price of my product is {product.price}</p> */}
+      {product.map((item)=>{
+        return(
+          <div key={item.id}>
+            <h4> name of my products is: {item.title}</h4> 
+          </div>
+        )
+      })}
     </div>
   )
 }
