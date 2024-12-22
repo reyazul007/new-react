@@ -1,52 +1,57 @@
-import React, { useState } from 'react'
-import productContext from './porductContext'
+
+import React, { useState } from 'react';
+import productContext from './porductContext';
 
 const ProductState = (props) => {
+let products=[
+  {
+    id: 1,
+    title: 'apple',
+    description: 'apple from mustang',
+    price: 100,
+    instock: 5,
+  },
+  {
+    id: 2,
+    title: 'mango',
+    description: 'mango from kalaiya',
+    price: 50,
+    instock: 4,
+  },
+  {
+    id: 3,
+    title: 'orange',
+    description: 'orange from gorkha',
+    price: 100,
+    instock: 5,
+  },
+]
+  
+  const [product , setProduct] = useState(products);
 
-    // let p1 = {
-    //     name: "apple",
-    //     price: 100
-    // }
-    // let update = () => {
-    //     setTimeout(() => {
-    //         setProduct({
-    //             name: "mango",
-    //             price: 50
-    //         })
-    //     }, 1000);
-    // }
-    let products=[
-        {
-            id:1,
-            title: "apple",
-            description:"apple from mustang",
-            price:100,
-            instock: 5
+  const [articles, setArticles] = useState([]);
 
-        },
-        {
-            id:2,
-            title: "mango",
-            description:"mango from kalaiya ",
-            price:50,
-            instock: 4
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a'
+      );
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const data = await response.json();
+      setArticles(data.articles); // Store only the articles array
+      console.log('Fetched data:', data.articles);
+    } catch (error) {
+      console.error('Fetching error:', error);
+    }
+  };
 
-        },
-        {
-            id:3,
-            title: "orange",
-            description:"orange from gorkha",
-            price:100,
-            instock: 5
+  return (
+    <productContext.Provider value={{ product, articles, fetchData }}>
+      {props.children}
+    </productContext.Provider>
+  );
+};
 
-        }
-    ]
-    const [product, setProduct] = useState(products)
-    return (
-        <productContext.Provider value={{ product }}>
-            {props.children}
-        </productContext.Provider>
-    )
-}
-
-export default ProductState
+export default ProductState;
