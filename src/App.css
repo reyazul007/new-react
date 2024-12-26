@@ -7,3 +7,11 @@
 .login-img {
   width: 100%;
 }
+.cart-page {
+  display: flex;
+}
+.filter-summary {
+  padding: 20px;
+  background: #000;
+  color: #fff;
+}
