@@ -45,9 +45,11 @@
 
 // export default Profile;
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import productContext from "../context/porductContext";
 import Apple from "../assets/apple.jpeg";
+import { BsThreeDots } from "react-icons/bs";
+import EditProductModal from "./EditProductModal";
 
 const Profile = () => {
   const context = useContext(productContext);
@@ -58,7 +60,34 @@ const Profile = () => {
   } = context;
   console.log("this is porducts", product);
   // console.log("this is state", state);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const toggleMenu = (id) => {
+    setMenuVisible((prvState) => ({
+      ...prvState,
+      [id]: !prvState[id],
+    }));
+  };
+
+  const openEditModal = (product) => {
+    setSelectedProduct(product);
+    setModalVisible(true);
+  };
+
+  const closeEditModal = () => {
+    setModalVisible(false);
+    selectedProduct(null);
+  };
+  const saveEdit = (updateData) => {
+    editProduct(selectedProduct.id, updateData);
+  };
+  const handleDelete = async (id) => {
+    console.log("deleting product");
+
+    // await deleteProduct(id)
+  };
   useEffect(() => {
     // fetchData();
   }, []);
@@ -73,7 +102,20 @@ const Profile = () => {
               <div className="card">
                 <img src={Apple} className="card-img-top" alt="news images" />
                 <div className="card-body">
-                  <h5 className="card-title">{item.title}</h5>
+                  <div className="three-dots">
+                    <h5 className="card-title">{item.title}</h5>
+                    <BsThreeDots onClick={() => toggleMenu(item.id)} />
+                    {menuVisible[item.id] && (
+                      <div className="menu-options">
+                        <button onClick={() => openEditModal(item)}>
+                          Edit
+                        </button>
+                        <button onClick={() => handleDelete(item.id)}>
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
                   <p className="card-text">{item.description}</p>
                   <p className="card-text">Rs. {item.price}</p>
                   {cart && cart.some((p) => p.id === item.id) ? (
@@ -103,6 +145,15 @@ const Profile = () => {
                   )}
                 </div>
               </div>
+              {modalVisible &&
+                selectedProduct &&
+                selectedProduct.id === item.id && (
+                  <EditProductModal
+                    product={selectedProduct}
+                    onClose={closeEditModal}
+                    onSave={saveEdit}
+                  />
+                )}
             </div>
           );
         })}
