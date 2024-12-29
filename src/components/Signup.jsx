@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Login1 from '../assets/login.jpeg'
+import Login1 from '../assets/login.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 // import Login1 from '../../public/vite.svg'
 
