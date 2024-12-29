@@ -56,6 +56,7 @@ const Profile = () => {
   const {
     state: { cart },
     product,
+    allProduct,
     dispatch,
   } = context;
   console.log("this is porducts", product);
@@ -90,6 +91,7 @@ const Profile = () => {
   };
   useEffect(() => {
     // fetchData();
+    allProduct();
   }, []);
 
   return (
