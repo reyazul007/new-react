@@ -55,7 +55,7 @@ const Login = () => {
                         </div>
 
                         <button type="submit" className="btn btn-primary">Submit</button>
-                        <Link className="nav-link" to='/signup'>Dont have accout? signup</Link>
+                        <Link className="nav-link" to='/signup'>Don't have accout? Signup</Link>
                     </form>
                 </div>
             </div>

@@ -15,7 +15,7 @@ const Navbar = (props) => {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            first-project
+            First-Project
           </Link>
           <button
             className="navbar-toggler"

@@ -62,7 +62,7 @@ const Signup = () => {
                         </div>
 
                         <button type="submit" className="btn btn-primary">Submit</button>
-                        <Link className="nav-link" to='/login'>Already have accout? login</Link>
+                        <Link className="nav-link" to='/login'>Already have accout? Login</Link>
                     </form>
                 </div>
             </div>

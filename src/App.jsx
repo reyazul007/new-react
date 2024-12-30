@@ -39,11 +39,11 @@ function App() {
     if (mode == "light") {
       setMode("dark");
       setBtnText("Enable Light");
-      showAlert("success", "Dark mode has been enabled");
+      showAlert("success", "Dark mode enabled");
     } else {
       setMode("light");
       setBtnText("Enable Dark");
-      showAlert("danger", "light mode has been enabled");
+      showAlert("danger", "Light mode enabled");
     }
   };
 
