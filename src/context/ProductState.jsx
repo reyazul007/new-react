@@ -5,22 +5,22 @@
 //   let products = [
 //     {
 //       id: 1,
-//       title: "apple",
-//       description: "apple from mustang",
+//       title: "Apple",
+//       description: "Apple from mustang",
 //       price: 100,
 //       instock: 5,
 //     },
 //     {
 //       id: 2,
-//       title: "mango",
-//       description: "mango from kalaiya",
+//       title: "Mango",
+//       description: "Mango from kalaiya",
 //       price: 50,
 //       instock: 4,
 //     },
 //     {
 //       id: 3,
-//       title: "orange",
-//       description: "orange from gorkha",
+//       title: "Orange",
+//       description: "Orange from gorkha",
 //       price: 100,
 //       instock: 5,
 //     },
@@ -64,7 +64,7 @@ const ProductState = (props) => {
     {
       id: 1,
       title: "Apple",
-      description: "Apple from Mustang",
+      description: "Apple from Mustang ",
       price: 100,
       instock: 5,
     },
@@ -86,7 +86,7 @@ const ProductState = (props) => {
       id: 4,
       title: "Grapes",
       description: "Grapes from Nuwakot",
-      price: 150,
+      price: 100,
       instock: 6,
     },
   ];
@@ -110,8 +110,35 @@ const ProductState = (props) => {
     setProduct(data);
   };
 
+  const editProduct = async (selectedProduct, updateData) => {
+    console.log("editing product ", selectedProduct);
+    const { title, description, price, instock } = updateData;
+    try {
+      const response = await fetch(
+        `http://localhos:5000/api/product/${selectedProduct}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ title, description, instock, price }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("fail to update");
+      }
+      const json = await response.json();
+      console.log(json);
+      allProduct();
+    } catch (error) {
+      throw new Error("fail to update");
+    }
+  };
   return (
-    <productContext.Provider value={{ product, allProduct, state, dispatch }}>
+    <productContext.Provider
+      value={{ product, allProduct, editProduct, state, dispatch }}
+    >
       {props.children}
     </productContext.Provider>
   );
