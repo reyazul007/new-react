@@ -5,7 +5,8 @@ const chats = require("./data/data");
 const port = 5000;
 
 dbConnect();
-
+// Middleware
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -21,6 +22,8 @@ app.get("/chats/:id", (req, res) => {
 
   res.send(singleChat);
 });
+app.use("/api/auth",  require("./routes/Auth"));
+// app.use("/api/product", require("./routes/product"));
 
 app.listen(port, () => {
   console.log(`api is listening on port: ${port}`);
