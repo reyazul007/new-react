@@ -22,7 +22,7 @@ app.get("/chats/:id", (req, res) => {
 
   res.send(singleChat);
 });
-app.use("/api/auth",  require("./routes/Auth"));
+app.use("/api/auth", require("./routes/Auth"));
 // app.use("/api/product", require("./routes/product"));
 
 app.listen(port, () => {
