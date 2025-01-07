@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const dbConnect = require("./db");
 const chats = require("./data/data");
-const port = 5000;
+const port = 3000;
 
 dbConnect();
 // Middleware
